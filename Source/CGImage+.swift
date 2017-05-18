@@ -74,4 +74,38 @@ public extension CGImage {
         }
         return nil
     }
+
+    // Binarization
+    // http://blog.sina.com.cn/s/blog_6b7ba99d0101js23.html
+    func binarization() -> CGImage? {
+        if let context = CGContext(
+            data: nil, width: self.width, height: self.height,
+            bitsPerComponent: 8, bytesPerRow: 4 * width,
+            space: CGColorSpaceCreateDeviceGray(),
+            bitmapInfo: CGImageAlphaInfo.none.rawValue
+            ) {
+            context.draw(self, in: CGRect(origin: CGPoint.zero, size: CGSize(width: self.width, height: self.height)))
+
+            if let data = UnsafeMutablePointer<UInt8>(OpaquePointer(context.data)) {
+                for y in 0 ..< self.height {
+                    for x in 0 ..< self.width {
+                        let intensity = Double(
+                            data[y * self.width + x] + data[y * self.width + x + 1] + data[y * self.width + x + 2]
+                            ) / 3.0 / 255.0
+                        if intensity > 0.45 {
+                            data[y * self.width + x] = 255
+                            data[y * self.width + x + 1] = 255
+                            data[y * self.width + x + 2] = 255
+                        } else {
+                            data[y * self.width + x] = 0
+                            data[y * self.width + x + 1] = 0
+                            data[y * self.width + x + 2] = 0
+                        }
+                    }
+                }
+            }
+            return context.makeImage()
+        }
+        return nil
+    }
 }

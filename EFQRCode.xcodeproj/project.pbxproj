@@ -168,12 +168,12 @@
 			isa = PBXGroup;
 			children = (
 				120B77E21EA393A600D34440 /* SystemColor+.swift */,
-				120B77E31EA393A600D34440 /* SystemImage+.swift */,
 				120B77D91EA393A600D34440 /* CGColor+.swift */,
-				120B77DA1EA393A600D34440 /* CGImage+.swift */,
-				120B77DB1EA393A600D34440 /* CGSize+.swift */,
 				120B77DC1EA393A600D34440 /* CIColor+.swift */,
+				120B77E31EA393A600D34440 /* SystemImage+.swift */,
+				120B77DA1EA393A600D34440 /* CGImage+.swift */,
 				120B77DD1EA393A600D34440 /* CIImage+.swift */,
+				120B77DB1EA393A600D34440 /* CGSize+.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";

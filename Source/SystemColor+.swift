@@ -37,7 +37,7 @@
             return self.cgColor
         }
     }
-#else
+#elseif os(iOS) || os(tvOS)
     import UIKit
 
     public extension UIColor {
